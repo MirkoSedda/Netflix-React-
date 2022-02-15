@@ -1,3 +1,88 @@
+// import { useState, useEffect } from "react"
+// import { Row, Spinner } from "react-bootstrap"
+// import SingleMovie from "./SingleMovie"
+
+// const MovieList = (title, searchString, movies, changeSelectedMovie) => {
+
+//   console.log(movies)
+
+//   const OMDB_URL = "http://www.omdbapi.com/?apikey=24ad60e9"
+
+//   const [searchResults, setSearchResults] = useState([])
+//   const [error, setError] = useState(false)
+
+//   const fetchSearchResult = async () => {
+//     try {
+//       const response = await fetch(
+//         OMDB_URL + "&s=" + searchString
+//       );
+//       if (response.ok) {
+//         const data = await response.json()
+//         if (data.Response === "True") {
+
+//           setSearchResults(data.Search)
+//           setError(false)
+
+//         } else {
+//           setError(true)
+//         }
+//       } else {
+//         setError(true)
+//         console.log("an error occurred")
+//       }
+//     } catch (error) {
+//       setError(true)
+//       console.log(error)
+//     }
+//   };
+
+//   useEffect(() => {
+
+//     searchString === "" ? setError(true) && setSearchResults([]) : fetchSearchResult()
+
+//     // eslint-disable-next-line
+//   }, [searchString])
+
+
+
+
+//   return (
+//     <>
+//       <h4>{movies.title}</h4>
+//       <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6 mb-4 text-center">
+//         {movies.loading
+//           ? [...Array(6).keys()].map((movie) => (
+//             <div className="spinner-container" key={movie}>
+//               <Spinner animation="border" variant="light" />
+//             </div>
+//           ))
+//           : movies &&
+//           movies.map((movie) => (
+//             <SingleMovie
+//               data={movie}
+//               key={movie.imdbID}
+//               changeSelectedMovie={(movieId) =>
+//                 changeSelectedMovie(movieId)
+//               }
+//             />
+//           ))}
+//         {searchResults.map((movie) => (
+//           <SingleMovie
+//             data={movie}
+//             key={movie.imdbID}
+//             changeSelectedMovie={(movieId) =>
+//               changeSelectedMovie(movieId)
+//             }
+//           />
+//         ))}
+//       </Row>
+//     </>
+//   )
+// }
+
+
+// export default MovieList
+
 import { Component } from "react";
 import { Row, Spinner } from "react-bootstrap";
 import SingleMovie from "./SingleMovie";
@@ -55,20 +140,20 @@ class MovieList extends Component {
         <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6 mb-4 text-center">
           {this.props.loading
             ? [...Array(6).keys()].map((movie) => (
-                <div className="spinner-container" key={movie}>
-                  <Spinner animation="border" variant="light" />
-                </div>
-              ))
+              <div className="spinner-container" key={movie}>
+                <Spinner animation="border" variant="light" />
+              </div>
+            ))
             : this.props.movies &&
-              this.props.movies.map((movie) => (
-                <SingleMovie
-                  data={movie}
-                  key={movie.imdbID}
-                  changeSelectedMovie={(movieId) =>
-                    this.props.changeSelectedMovie(movieId)
-                  }
-                />
-              ))}
+            this.props.movies.map((movie) => (
+              <SingleMovie
+                data={movie}
+                key={movie.imdbID}
+                changeSelectedMovie={(movieId) =>
+                  this.props.changeSelectedMovie(movieId)
+                }
+              />
+            ))}
           {this.state.searchResults.map((movie) => (
             <SingleMovie
               data={movie}
