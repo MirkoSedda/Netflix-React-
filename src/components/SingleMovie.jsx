@@ -1,15 +1,14 @@
 import { Col } from "react-bootstrap";
 
-const SingleMovie = ({ data }, changeSelectedMovie) => {
-  console.log(data);
+const SingleMovie = (props) => {
   return (
-    <Col className="mb-2" key={data.imdbID}>
+    <Col className="mb-2" key={props.data.imdbID}>
       <img
         className="img-fluid"
-        src={data.Poster}
+        src={props.data.Poster}
         alt="movie"
         onClick={() => {
-          changeSelectedMovie(data.imdbID);
+          props.changeSelectedMovie(props.data.imdbID);
         }}
       />
     </Col>

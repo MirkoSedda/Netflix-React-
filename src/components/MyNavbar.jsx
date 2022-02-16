@@ -75,7 +75,7 @@ export default MyNavbar
 
 //   searchStringHandler = (e) => {
 //     if (e.keyCode === 13) {
-//       // WHEN ENTER KEY IS PRESSED
+//       WHEN ENTER KEY IS PRESSED
 //       this.props.showSearchResult(this.state.searchString);
 //     } else {
 //       this.setState({ searchString: e.currentTarget.value });
