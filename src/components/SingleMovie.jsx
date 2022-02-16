@@ -1,41 +1,24 @@
-import { Col } from "react-bootstrap";
+import { Button, Col } from "react-bootstrap"
+import { useNavigate } from "react-router"
 
-const SingleMovie = (props) => {
+const SingleMovie = ({ data, changeSelectedMovie }) => {
+  const navigate = useNavigate()
+
   return (
-    <Col className="mb-2" key={props.data.imdbID}>
+    <Col className="mb-2" key={data.imdbID}>
       <img
         className="img-fluid"
-        src={props.data.Poster}
+        src={data.Poster}
         alt="movie"
         onClick={() => {
-          props.changeSelectedMovie(props.data.imdbID);
+          changeSelectedMovie(data.imdbID)
         }}
       />
+      <Button onClick={() => navigate("/details/" + data.imdbID)}>
+        Movie Details
+      </Button>
     </Col>
-  );
+  )
 }
 
-
 export default SingleMovie
-
-// import { Component } from "react";
-// import { Col } from "react-bootstrap";
-
-// class SingleMovie extends Component {
-//   render() {
-//     return (
-//       <Col className="mb-2" key={this.props.data.imdbID}>
-//         <img
-//           className="img-fluid"
-//           src={this.props.data.Poster}
-//           alt="movie"
-//           onClick={() => {
-//             this.props.changeSelectedMovie(this.props.data.imdbID);
-//           }}
-//         />
-//       </Col>
-//     );
-//   }
-// }
-
-// export default SingleMovie;

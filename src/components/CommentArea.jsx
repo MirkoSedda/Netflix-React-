@@ -29,11 +29,11 @@ class CommentArea extends Component {
               this.props.movieId,
               {
                 headers: {
-                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNjY0ZTgyZWExZDAwMTViYjAzZWMiLCJpYXQiOjE2NDQ4NDQ3NjcsImV4cCI6MTY0NjA1NDM2N30.CQYFhS63KiJkhKeofDb51p2dfzSam4dCH8rml61wZKE',
+                  Authorization:
+                    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNjY0ZTgyZWExZDAwMTViYjAzZWMiLCJpYXQiOjE2NDQ4NDQ3NjcsImV4cCI6MTY0NjA1NDM2N30.CQYFhS63KiJkhKeofDb51p2dfzSam4dCH8rml61wZKE',
                 },
               }
             );
-            console.log(response);
             if (response.ok) {
               let comments = await response.json();
               this.setState({
@@ -107,7 +107,7 @@ class CommentArea extends Component {
           this.state.comments[0].elementId === this.props.movieId && (
             <CommentsList comments={this.state.comments} />
           )}
-        <div className="text-center">
+        <div className="text-center text-light">
           <h5 className="my-3">Add a comment</h5>
           <Form onSubmit={this.submitComment}>
             <div className="my-3 text-center">

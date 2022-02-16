@@ -1,46 +1,78 @@
-import { useState } from "react";
-import { Navbar, Nav, InputGroup, FormControl } from "react-bootstrap";
+import { useState } from "react"
+import { Navbar, Nav, InputGroup, FormControl } from "react-bootstrap"
+import { useLocation, Link } from "react-router-dom"
 
-const MyNavbar = (showSearchResult) => {
-
-  const [searchString, setSearchString] = useState('')
+const MyNavbar = ({ showSearchResult }) => {
+  const [searchString, setSearchString] = useState("")
+  const location = useLocation()
 
   const searchStringHandler = (e) => {
     if (e.keyCode === 13) {
+      // WHEN ENTER KEY IS PRESSED
       showSearchResult(searchString)
     } else {
       setSearchString(e.currentTarget.value)
     }
   }
 
-
   return (
     <Navbar variant="dark" expand="lg" style={{ backgroundColor: "#221f1f" }}>
-      <Navbar.Brand href="/">
-        <img
-          src="assets/logo.png"
-          alt="logo"
-          style={{ width: "100px", height: "55px" }}
-        />
-      </Navbar.Brand>
+      <Link to="/">
+        <Navbar.Brand>
+          <img
+            src="assets/logo.png"
+            alt="logo"
+            style={{ width: "100px", height: "55px" }}
+          />
+        </Navbar.Brand>
+      </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link active className="font-weight-bold" href="/">
-            Home
-          </Nav.Link>
-          <Nav.Link className="font-weight-bold" href="/">
-            TV Shows
-          </Nav.Link>
-          <Nav.Link className="font-weight-bold" href="/">
+          <Link to="/">
+            <div
+              className={
+                "nav-link font-weight-bold" +
+                (location.pathname === "/" ? " active" : "")
+              }
+            >
+              Home
+            </div>
+          </Link>
+          <Link to="/tv-shows">
+            <div
+              className={
+                "nav-link font-weight-bold" +
+                (location.pathname === "/tv-shows" ? " active" : "")
+              }
+            >
+              TV Shows
+            </div>
+          </Link>
+          <div
+            className={
+              "nav-link font-weight-bold" +
+              (location.pathname === "/movies" ? " active" : "")
+            }
+          >
             Movies
-          </Nav.Link>
-          <Nav.Link className="font-weight-bold" href="/">
+          </div>
+          <div
+            className={
+              "nav-link font-weight-bold" +
+              (location.pathname === "/recent" ? " active" : "")
+            }
+          >
             Recently Added
-          </Nav.Link>
-          <Nav.Link className="font-weight-bold" href="/">
+          </div>
+          <div
+            className={
+              "nav-link font-weight-bold" +
+              (location.pathname === "/my-list" ? " active" : "")
+            }
+          >
             My List
-          </Nav.Link>
+          </div>
         </Nav>
         <span className="d-flex align-items-center">
           <InputGroup className="icons">
@@ -62,74 +94,4 @@ const MyNavbar = (showSearchResult) => {
   )
 }
 
-
 export default MyNavbar
-
-// import { Component } from "react";
-// import { Navbar, Nav, InputGroup, FormControl } from "react-bootstrap";
-
-// class MyNavbar extends Component {
-//   state = {
-//     searchString: "",
-//   };
-
-//   searchStringHandler = (e) => {
-//     if (e.keyCode === 13) {
-//       WHEN ENTER KEY IS PRESSED
-//       this.props.showSearchResult(this.state.searchString);
-//     } else {
-//       this.setState({ searchString: e.currentTarget.value });
-//     }
-//   };
-
-//   render() {
-//     return (
-//       <Navbar variant="dark" expand="lg" style={{ backgroundColor: "#221f1f" }}>
-//         <Navbar.Brand href="/">
-//           <img
-//             src="assets/logo.png"
-//             alt="logo"
-//             style={{ width: "100px", height: "55px" }}
-//           />
-//         </Navbar.Brand>
-//         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-//         <Navbar.Collapse id="basic-navbar-nav">
-//           <Nav className="mr-auto">
-//             <Nav.Link active className="font-weight-bold" href="/">
-//               Home
-//             </Nav.Link>
-//             <Nav.Link className="font-weight-bold" href="/">
-//               TV Shows
-//             </Nav.Link>
-//             <Nav.Link className="font-weight-bold" href="/">
-//               Movies
-//             </Nav.Link>
-//             <Nav.Link className="font-weight-bold" href="/">
-//               Recently Added
-//             </Nav.Link>
-//             <Nav.Link className="font-weight-bold" href="/">
-//               My List
-//             </Nav.Link>
-//           </Nav>
-//           <span className="d-flex align-items-center">
-//             <InputGroup className="icons">
-//               <FormControl
-//                 placeholder="Search and press enter"
-//                 aria-label="search"
-//                 aria-describedby="basic-addon1"
-//                 onKeyDown={this.searchStringHandler}
-//                 onChange={this.searchStringHandler}
-//                 value={this.state.searchString}
-//               />
-//             </InputGroup>
-//             <div id="kids">KIDS</div>
-//             <i className="fa fa-bell icons"></i>
-//             <i className="fa fa-user icons"></i>
-//           </span>
-//         </Navbar.Collapse>
-//       </Navbar>
-//     );
-//   }
-// }
-
-// export default MyNavbar;
